@@ -1,4 +1,5 @@
 --exercise 1
+
 query = (`
 SELECT 
     users.id AS id,
@@ -6,10 +7,11 @@ SELECT
     cities.name AS city 
 FROM users
     JOIN cities ON users."cityId" = cities.id
-    WHERE cities.name = "Rio de Janeiro";
+    WHERE cities.name = 'Rio de Janeiro';
 `)
 
 --exercise 2
+
 query(`
 SELECT 
     u1.id AS id, 
@@ -53,3 +55,23 @@ FROM experiences e
     WHERE u.id = 50 AND e."endDate" IS NULL;
 `)
 
+--exercise 5 
+
+query(`
+SELECT
+    s.id AS id,
+    s.name AS school,
+    c.name AS course,
+    co.name AS company,
+    r.name AS role
+FROM educations e
+    JOIN school s ON e."schoolId" = s.id
+    JOIN courses c ON e."courseId" = c.id
+    JOIN jobs j ON a."jobId" = j.id
+    JOIN companies co ON j."companyId" = co.id
+    JOIN roles r ON j."roleId" = r.id
+    WHERE co.id = 10
+    AND r.name = 'Software Engineer'
+    AND j.active = true;
+
+`)
