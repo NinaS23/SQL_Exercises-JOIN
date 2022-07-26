@@ -34,5 +34,22 @@ FROM educations e
     JOIN users u ON e."userId" = u.id
     JOIN courses c ON e."courseId" = c.id
     JOIN schools s ON e."schoolId" = s.id
-    WHERE u.id = 30 AND e.status = "finished";
+    WHERE u.id = 30 AND e.status = finished;
 `)
+
+--exercise 4
+
+query(`
+SELECT 
+    u.id AS id,
+    u.name AS name,
+    r.name AS role,
+    c.name AS company,
+    e."startDate" AS "startDate"
+FROM experiences e
+    JOIN users u ON e."userId" = u.id
+    JOIN roles r ON e."roleId" = r.id
+    JOIN companies c ON e."companyId" = c.id
+    WHERE u.id = 50 AND e."endDate" IS NULL;
+`)
+
