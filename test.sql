@@ -1,4 +1,4 @@
---exercicio 1
+--exercise 1
 query = (`
 SELECT 
     users.id AS id,
@@ -9,7 +9,7 @@ FROM users
     WHERE cities.name = "Rio de Janeiro";
 `)
 
---exercicio 2
+--exercise 2
 query(`
 SELECT 
     u1.id AS id, 
@@ -19,4 +19,20 @@ SELECT
 FROM testimonials t 
     JOIN users u1 ON t."writerId" = u1.id
     JOIN users u2 ON t."recepientId" = u2.id; 
+`)
+
+--exercise 3
+
+query(`
+SELECT
+    u.id As id,
+    u.name AS name,
+    c.name AS courses,
+    s.name AS school,
+    e."endDate"
+FROM educations e
+    JOIN users u ON e."userId" = u.id
+    JOIN courses c ON e."courseId" = c.id
+    JOIN schools s ON e."schoolId" = s.id
+    WHERE u.id = 30 AND e.status = "finished";
 `)
